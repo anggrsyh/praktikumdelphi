@@ -1,0 +1,149 @@
+unit UnitRumah;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    GroupBox1: TGroupBox;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioButton3: TRadioButton;
+    GroupBox2: TGroupBox;
+    ComboBox1: TComboBox;
+    Label2: TLabel;
+    GroupBox3: TGroupBox;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Label13: TLabel;
+    GroupBox4: TGroupBox;
+    Panel1: TPanel;
+    Label3: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Panel2: TPanel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure RadioButton3Click(Sender: TObject);
+    procedure RadioButton2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+EDIT1.Clear;
+EDIT2.Clear;
+EDIT3.Clear;
+EDIT4.Clear;
+EDIT5.Clear;
+EDIT6.Clear;
+EDIT7.Clear;
+EDIT8.Clear;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+VAR f1, f2, f3, f4, ft:integer;
+begin
+if checkbox1.Checked = true then
+f1 := 5000000 else f1 := 0;
+if checkbox2.Checked = true then
+f2 := 4500000 else f2 := 0;
+if checkbox3.Checked = true then
+f3 := 3500000 else f3 := 0;
+if checkbox4.Checked = true then
+f4 := 1500000 else f4 := 0;
+
+//Menghitung  Fasilitas Tambahan
+ft := f1+f2+f3+f4;
+edit4.Text := inttostr(ft);
+
+// Menghitung Hutang
+edit5.Text := inttostr(strtoint(edit1.Text ) - strtoint(edit3.Text ) + strtoint(edit4.Text ));
+
+//Menghitung Hutang Bunga
+edit6.Text := currtostr(strtocurr(edit5.Text ) * strtoint(combobox1.Text ) * (strtoint(edit2.Text)/100));
+
+//Menghitung Total Hutang
+edit7.Text := inttostr(strtoint(edit5.Text ) + strtoint(edit6.Text ));
+
+//Menghitung Angsuran Bulanan
+edit8.Text := currtostr(strtocurr(edit7.Text ) / (strtocurr(combobox1.Text ) *12));
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+Close
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+edit1.Clear;
+edit2.Clear;
+edit3.Clear;
+edit4.Clear;
+edit5.Clear;
+edit6.Clear;
+edit7.Clear;
+edit8.Clear;
+end;
+
+//COMBOBOX1.TEXT := 'PILIH';
+
+procedure TForm1.RadioButton1Click(Sender: TObject);
+begin
+EDIT1.Text := '150000000' ;
+Edit2.Text := '14' ;
+end;
+
+procedure TForm1.RadioButton2Click(Sender: TObject);
+begin
+edit1.Text := '90000000' ;
+edit2.Text := '12' ;
+end;
+
+procedure TForm1.RadioButton3Click(Sender: TObject);
+begin
+edit1.Text := '62000000' ;
+edit2.Text := '10' ;
+end;
+
+end.
